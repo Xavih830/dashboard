@@ -23,10 +23,10 @@ function App() {
       <Grid size={9}>Elemento: Indicadores</Grid>
 
       {/* Gráfico */}
-      <Grid size={6}>Elemento: Gráfico</Grid>
+      <Grid size={6} sx={{ display: { xs: "none", md: "block"} }}>Elemento: Gráfico</Grid>
 
       {/* Tabla */}
-      <Grid size={6}>Elemento: Tabla</Grid>
+      <Grid size={6} sx={{ display: { xs: "none", md: "block"} }}>Elemento: Tabla</Grid>
 
       {/* Información adicional */}
       <Grid size={12}>Elemento: Información adicional</Grid>
