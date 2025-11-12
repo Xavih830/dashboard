@@ -8,28 +8,28 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Grid>
+    <Grid container spacing={5} justifyContent="center" alignItems="center">
 
       {/* Encabezado */}
-      <Grid>Elemento: Encabezado</Grid>
+      <Grid size={12}>Elemento: Encabezado</Grid>
 
       {/* Alertas */}
-      <Grid>Elemento: Alertas</Grid>
+      <Grid size={12}>Elemento: Alertas</Grid>
 
       {/* Selector */}
-      <Grid>Elemento: Selector</Grid>
+      <Grid size={3}>Elemento: Selector</Grid>
 
       {/* Indicadores */}
-      <Grid>Elemento: Indicadores</Grid>
+      <Grid size={9}>Elemento: Indicadores</Grid>
 
       {/* Gráfico */}
-      <Grid>Elemento: Gráfico</Grid>
+      <Grid size={6}>Elemento: Gráfico</Grid>
 
       {/* Tabla */}
-      <Grid>Elemento: Tabla</Grid>
+      <Grid size={6}>Elemento: Tabla</Grid>
 
       {/* Información adicional */}
-      <Grid>Elemento: Información adicional</Grid>
+      <Grid size={12}>Elemento: Información adicional</Grid>
 
     </Grid>
   )
