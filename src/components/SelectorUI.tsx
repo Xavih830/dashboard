@@ -15,8 +15,8 @@ export default function SelectorUI() {
 
     return (
         <FormControl fullWidth>
-            <InputLabel id="city-select-label">Ciudad</InputLabel>
-            <Select onChange={handleChange} value={cityInput}
+            <InputLabel id="city-select-label" style={{color:'white'}}>Ciudad</InputLabel>
+            <Select onChange={handleChange} value={cityInput} style={{color:'white'}}
                 labelId="city-select-label"
                 id="city-simple-select"
                 label="Ciudad">
