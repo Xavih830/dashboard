@@ -26,7 +26,6 @@ export default function SelectorUI() {
                 <MenuItem value={"manta"}>Manta</MenuItem>
                 <MenuItem value={"cuenca"}>Cuenca</MenuItem>
             </Select>
-
             {
                 cityInput && (
                     <p>
