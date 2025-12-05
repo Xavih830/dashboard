@@ -45,3 +45,4 @@ export interface Currentunits {
   apparent_temperature: string;
   wind_speed_10m: string;
 }
+

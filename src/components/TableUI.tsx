@@ -1,5 +1,7 @@
 import Box from '@mui/material/Box';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
+import type { DataFetcherOutput } from '../functions/useDataFetcher';
+import {useState, useEffect} from 'react';
 
 function combineArrays(arrLabels: Array<string>, arrValues1: Array<number>, arrValues2: Array<number>) {
    return arrLabels.map((label, index) => ({
@@ -16,51 +18,60 @@ const columns: GridColDef[] = [
       field: 'label',
       headerName: 'Label',
       width: 150,
+      headerAlign: 'center'
    },
    {
       field: 'value1',
       headerName: 'Value 1',
       width: 150,
+      align: 'center',
+      headerAlign: 'center'
    },
    {
       field: 'value2',
       headerName: 'Value 2',
       width: 150,
-   },
-   {
-      field: 'resumen',
-      headerName: 'Resumen',
-      description: 'No es posible ordenar u ocultar esta columna.',
-      sortable: false,
-      hideable: false,
-      width: 160,
-      valueGetter: (_, row) => `${row.label || ''} ${row.value1 || ''} ${row.value2 || ''}`,
-   },
+      align: 'center',
+      headerAlign: 'center'
+   }
 ];
 
-const arrValues1 = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const arrValues2 = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const arrLabels = ['A','B','C','D','E','F','G'];
+export default function TableUI(datos: DataFetcherOutput) {
 
-export default function TableUI() {
+   {datos.loading && console.log("Expresion cargando")}
+   {datos.error && console.log(datos.error)}
+   
+   const [rows, setRows] = useState(combineArrays([""], [0], [0]));
 
-   const rows = combineArrays(arrLabels, arrValues1, arrValues2);
+   useEffect(() => {
+      if (datos.data) {
+         setRows(combineArrays(datos.data.hourly.time, datos.data.hourly.temperature_2m, datos.data.hourly.apparent_temperature));
+      }
+   }, [datos]);
 
    return (
-      <Box sx={{ height: 350, width: '100%' }}>
-         <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-               pagination: {
-                  paginationModel: {
-                     pageSize: 5,
-                  },
-               },
-            }}
-            pageSizeOptions={[5]}
-            disableRowSelectionOnClick
-         />
-      </Box>
+      <>
+         {datos.loading && <p>Cargando datos...</p>}
+         {datos.error && <p>Error: {datos.error}</p>}
+         {datos.data && (
+            <>
+               <Box sx={{ height: 400, width: '100%' }}>
+                  <DataGrid 
+                     rows={rows}
+                     columns={columns}
+                     initialState={{
+                        pagination: {
+                           paginationModel: {
+                              pageSize: 5,
+                           },
+                        },
+                     }}
+                     pageSizeOptions={[5]}
+                     disableRowSelectionOnClick
+                  />
+               </Box>
+            </>
+         )}
+      </>
    );
 }

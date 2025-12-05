@@ -1,10 +1,8 @@
 import { LineChart } from '@mui/x-charts/LineChart';
 import Typography from '@mui/material/Typography';
-import useDataFetcher from '../functions/useDataFetcher';
+import type { DataFetcherOutput } from '../functions/useDataFetcher';
 
-export default function ChartUI() {
-
-    const datos = useDataFetcher();
+export default function ChartUI(datos : DataFetcherOutput) {
 
     return (
         <>

@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import type { OpenMeteoResponse } from "../types/DashboardTypes";
 
-interface DataFetcherOutput {
+export interface DataFetcherOutput {
     data: OpenMeteoResponse | null;
     loading: boolean;
     error: string | null;
 }
 
-export default function useDataFetcher( ) : DataFetcherOutput {
+export default function useDataFetcher( url : string ) : DataFetcherOutput {
 
     const [data, setData] = useState<OpenMeteoResponse | null>(null);
     const [loading, setLoading] = useState(true);
@@ -17,7 +17,6 @@ export default function useDataFetcher( ) : DataFetcherOutput {
     useEffect(() => {
 
         // Reemplace con su URL de la API de Open-Meteo obtenida en actividades previas
-        const url = "https://api.open-meteo.com/v1/forecast?latitude=-2.1962&longitude=-79.8862&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago";
 
         const fetchData = async () => {
 
@@ -47,7 +46,7 @@ export default function useDataFetcher( ) : DataFetcherOutput {
 
         fetchData();
 
-    }, []); // El array vacío asegura que el efecto se ejecute solo una vez después del primer renderizado
+    }, [url]); // El array vacío asegura que el efecto se ejecute solo una vez después del primer renderizado
 
     return { data, loading, error };
 
