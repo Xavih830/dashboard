@@ -7,9 +7,10 @@ import HeaderUI from './components/HeaderUI';
 import AlertUI from './components/AlertUI';
 import SelectorUI from './components/SelectorUI';
 import IndicatorUI from './components/IndicatorUI';
-import useDataFetcher from './functions/useDataFetcher';
 import TableUI from './components/TableUI';
 import ChartUI from './components/ChartUI';
+import useFetchData from './functions/useFetchData';
+import MoreUI from './components/MoreUI';
 
 function App() {
   /*const [count, setCount] = useState(0)*/
@@ -20,14 +21,14 @@ function App() {
   const quito = "latitude=-0.2298&longitude=-78.525";*/
 
   const [ciudad, setCiudad] = useState(guayaquil);
-  const [url, setUrl] = useState("https://api.open-meteo.com/v1/forecast?latitude=-2.1962&longitude=-79.8862&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago");
+  const [url, setUrl] = useState("https://api.open-meteo.com/v1/forecast?latitude=-2.1962&longitude=-79.8862&daily=rain_sum&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago");
 
   const handleCityChange = (ciudad: string) => {
     setCiudad(ciudad);
-    setUrl(`https://api.open-meteo.com/v1/forecast?${ciudad}&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago`);
+    setUrl(`https://api.open-meteo.com/v1/forecast?${ciudad}&daily=rain_sum&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago`);
   }
 
-  const dataFetcherOutput = useDataFetcher(url);
+  const dataFetcherOutput = useFetchData(url);
 
   return (
     <Grid container spacing={5} justifyContent="center" alignItems="center">
@@ -36,14 +37,13 @@ function App() {
       <Grid size={{ xs: 12, md: 12 }}><HeaderUI /></Grid>
 
       {/* Alertas */}
-      <Grid size={{ xs: 12, md: 12 }} container justifyContent="right" alignItems="center">
-        <AlertUI description='No se preveen lluvias' />
+      <Grid size={{ xs: 12, md: 12 }} bgcolor={'white'} padding={'8px'} borderRadius={'4px'} container justifyContent="right" alignItems="center">
+        <AlertUI {...dataFetcherOutput}/>
       </Grid>
 
       {/* Selector */}
-      <Grid size={{ xs: 12, md: 3 }}><SelectorUI ciudad={ciudad} handleCityChange={handleCityChange}>
-      
-      </SelectorUI>
+      <Grid size={{ xs: 12, md: 3 }}>
+        <SelectorUI ciudad={ciudad} handleCityChange={handleCityChange}/>
       </Grid>
 
       {/* Indicadores */}
@@ -90,13 +90,13 @@ function App() {
       </Grid>
 
       {/* Gráfico */}
-      <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}><ChartUI {...dataFetcherOutput}/></Grid>
+      <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: "none", md: "block" }, backgroundColor:"white", padding: "6px" }}><ChartUI {...dataFetcherOutput}/></Grid>
 
       {/* Tabla */}
       <Grid size={{ xs: 12, md: 6 }} sx={{ display: { xs: "none", md: "block" } }}><TableUI {...dataFetcherOutput}/></Grid>
 
       {/* Información adicional */}
-      <Grid size={{ xs: 12, md: 12 }}>Elemento: Información adicional</Grid>
+      <Grid size={{ xs: 12, md: 9 }}><MoreUI {...dataFetcherOutput}/></Grid>
 
     </Grid>
   )

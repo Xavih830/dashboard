@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
-import type { DataFetcherOutput } from '../functions/useDataFetcher';
+import type { DataFetcherOutput } from '../functions/useFetchData';
 import {useState, useEffect} from 'react';
 
 function combineArrays(arrLabels: Array<string>, arrValues1: Array<number>, arrValues2: Array<number>) {
@@ -16,20 +16,20 @@ const columns: GridColDef[] = [
    { field: 'id', headerName: 'ID', width: 90 },
    {
       field: 'label',
-      headerName: 'Label',
+      headerName: 'Fecha',
       width: 150,
       headerAlign: 'center'
    },
    {
       field: 'value1',
-      headerName: 'Value 1',
+      headerName: 'Temperatura (°C)',
       width: 150,
       align: 'center',
       headerAlign: 'center'
    },
    {
       field: 'value2',
-      headerName: 'Value 2',
+      headerName: 'Temperatura aparente (°C)',
       width: 150,
       align: 'center',
       headerAlign: 'center'
@@ -62,11 +62,11 @@ export default function TableUI(datos: DataFetcherOutput) {
                      initialState={{
                         pagination: {
                            paginationModel: {
-                              pageSize: 5,
+                              pageSize: 4,
                            },
                         },
                      }}
-                     pageSizeOptions={[5]}
+                     pageSizeOptions={[4]}
                      disableRowSelectionOnClick
                   />
                </Box>

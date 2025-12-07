@@ -8,7 +8,7 @@ export interface DataFetcherOutput {
     error: string | null;
 }
 
-export default function useDataFetcher( url : string ) : DataFetcherOutput {
+export default function useFetchData( url : string ) : DataFetcherOutput {
 
     const [data, setData] = useState<OpenMeteoResponse | null>(null);
     const [loading, setLoading] = useState(true);

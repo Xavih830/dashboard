@@ -10,6 +10,18 @@ export interface OpenMeteoResponse {
   current: Current;
   hourly_units: Hourlyunits;
   hourly: Hourly;
+  daily_units: Dailyunits;
+  daily: Daily;
+}
+
+export interface Daily {
+  time: string[];
+  rain_sum: number[];
+}
+
+export interface Dailyunits {
+  time: string;
+  rain_sum: string;
 }
 
 export interface Hourly {

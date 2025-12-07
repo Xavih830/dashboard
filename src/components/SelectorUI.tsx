@@ -15,6 +15,12 @@ export default function SelectorUI(props: SelectorProps) {
     const [cityInput, setCityInput] = useState(props.ciudad);
     const [cityName, setCityName] = useState("");
 
+    const fecha = new Date();
+    const dia = fecha.getDate();
+    const mes = fecha.getMonth();
+
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
     useEffect(() => {
         setCityInput(props.ciudad);
         if (cityInput == "latitude=-2.1962&longitude=-79.8862") {
@@ -36,7 +42,7 @@ export default function SelectorUI(props: SelectorProps) {
     return (
         <FormControl fullWidth>
             <InputLabel id="city-select-label" style={{color:'white'}}>Ciudad</InputLabel>
-            <Select onChange={handleChange} value={cityInput} style={{color:'white'}}
+            <Select onChange={handleChange} value={cityInput} style={{color:'white'}} sx={{'& .MuiOutlinedInput-notchedOutline': {borderColor: 'white'}, '&:hover .MuiOutlinedInput-notchedOutline': {borderWidth: '4px', borderColor: 'white'}}}
                 labelId="city-select-label"
                 id="city-simple-select"
                 label="Ciudad">
@@ -49,7 +55,7 @@ export default function SelectorUI(props: SelectorProps) {
             {
                 cityName && (
                     <p>
-                        Información del clima en <span style={{textTransform: "capitalize", fontWeight:"bold"}}>{cityName}</span>
+                        Información del clima en <span style={{textTransform: "capitalize", fontWeight:"bold"}}>{cityName}</span> del día {dia} de {meses[mes]}
                     </p>
                 )
             }
