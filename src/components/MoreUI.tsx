@@ -63,7 +63,7 @@ export default function MoreUI(datos: DataFetcherOutput) {
                 Predicciones de los próximos días de {meses[mes - 1]}
             </Typography>
             <Grid container size={{ xs: 12, md: 12 }} spacing={1}>
-                {etiqueta.map((e, j, arr) => (
+                {etiqueta.map((e, j) => (
                         <Grid size={{ xs: 12, md: 4 }} >
                             <Card >
                                 <CardContent sx={{ height: '100%' }}>
