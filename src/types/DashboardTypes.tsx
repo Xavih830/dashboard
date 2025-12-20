@@ -30,6 +30,7 @@ export interface Hourly {
   relative_humidity_2m: number[];
   apparent_temperature: number[];
   wind_speed_10m: number[];
+  cloud_cover: number[];
 }
 
 export interface Hourlyunits {
@@ -38,6 +39,7 @@ export interface Hourlyunits {
   relative_humidity_2m: string;
   apparent_temperature: string;
   wind_speed_10m: string;
+  cloud_cover: string;
 }
 
 export interface Current {

@@ -21,11 +21,11 @@ function App() {
   const quito = "latitude=-0.2298&longitude=-78.525";*/
 
   const [ciudad, setCiudad] = useState(guayaquil);
-  const [url, setUrl] = useState("https://api.open-meteo.com/v1/forecast?latitude=-2.1962&longitude=-79.8862&daily=rain_sum&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago");
+  const [url, setUrl] = useState("https://api.open-meteo.com/v1/forecast?latitude=-2.1962&longitude=-79.8862&daily=rain_sum&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,cloud_cover&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago");
 
   const handleCityChange = (ciudad: string) => {
     setCiudad(ciudad);
-    setUrl(`https://api.open-meteo.com/v1/forecast?${ciudad}&daily=rain_sum&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago`);
+    setUrl(`https://api.open-meteo.com/v1/forecast?${ciudad}&daily=rain_sum&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,cloud_cover&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&timezone=America%2FChicago`);
   }
 
   const dataFetcherOutput = useFetchData(url);
