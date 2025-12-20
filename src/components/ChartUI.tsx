@@ -49,8 +49,8 @@ export default function ChartUI(datos: DataFetcherOutput) {
                     <LineChart
                         height={300}
                         series={[
-                            { data: val1, label: 'Temperatura' },
-                            { data: val2, label: 'Temperatura aparente' },
+                            { data: val1, label: 'Temperatura (°C)' },
+                            { data: val2, label: 'Temperatura aparente (°C)' },
                         ]}
                         xAxis={[{ scaleType: 'point', data: etiqueta }]}
                     />
